@@ -15,5 +15,5 @@ jobs:
         image_name: cpp-py-formatter
         image_tag: latest
         username: pgrete
-        password: ${{ secrets.GHCR_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
         push_git_tag: true
