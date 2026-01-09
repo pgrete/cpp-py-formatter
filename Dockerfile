@@ -1,5 +1,5 @@
 # Build the GitHub Action
-FROM rust:1.52 as builder
+FROM rust:1.87.0 as builder
 WORKDIR /usr/src/myapp
 COPY Cargo.toml .
 COPY Cargo.lock .
@@ -7,16 +7,21 @@ COPY src ./src
 RUN cargo install --path .
 
 # GitHub Action Image
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 # Install our apt packages
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y git \
+RUN apt-get install -y --no-install-recommends git \
   python3-pip \
-  clang-format-10 clang-format-11 clang-format-12 \
+  clang-format-14 \
+  clang-format-15 \
+  clang-format-16 \
+  clang-format-17 \
+  clang-format-18 \
+  clang-format-19 \
+  clang-format-20 \
   && rm -rf /var/lib/apt/lists/*
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install black
+RUN python3 -m pip install --break-system-packages black
 
 COPY gitconfig /etc
 
