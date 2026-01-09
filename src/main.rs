@@ -53,7 +53,7 @@ impl App {
                 Arg::with_name("clang-format-version")
                     .long("clang-format-version")
                     .takes_value(true)
-                    .default_value("13")
+                    .default_value("12")
                     .conflicts_with("clang-format-override"),
             )
             .arg(
